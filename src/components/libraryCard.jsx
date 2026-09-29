@@ -1,8 +1,11 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 
 const LibraryCard = ({libraryData}) => {
+
+
    return (
   <Link href={`/${libraryData.id}`}>
   <div className="overflow-hidden rounded-xl border border-white/10 bg-[#15161b]">

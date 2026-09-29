@@ -1,9 +1,14 @@
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '@/app/assets/logo.png';
+import { planContext } from '@/context/planProvider';
 
 const Navbar = () => {
+    
+      const {todaysPlan ,savedPlan, } = useContext(planContext)
+      
     const links = (
         <>
             <li>
@@ -86,24 +91,24 @@ const Navbar = () => {
                 <div className="navbar-end gap-5">
 
                     <Link
-                        href="/plan"
+                        href="/my-plan"
                         className="flex items-center gap-1.5 text-[11px] font-medium text-gray-400 transition hover:text-white"
                     >
                         <span>Plan</span>
 
                         <span className="flex h-4 w-4 items-center justify-center rounded-full bg-lime-400 text-[9px] font-bold text-black">
-                            0
+                            {todaysPlan.length}
                         </span>
                     </Link>
 
                     <Link
-                        href="/saved"
+                        href="/my-plan"
                         className="flex items-center gap-1.5 text-[11px] font-medium text-gray-400 transition hover:text-white"
                     >
                         <span>Saved</span>
 
                         <span className="flex h-4 w-4 items-center justify-center rounded-full border border-white/20 text-[9px] text-gray-400">
-                            0
+                            {savedPlan.length}
                         </span>
                     </Link>
 

@@ -1,11 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
 
+import Todaysbtn from '@/components/todaysbtn';
+import Savebtn from '@/components/savebtn';
+
 const DetailsPage = async ({ params }) => {
+
     const { id } = await params
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
     const data = await res.json()
     const workData = data.find(work => work.id === Number(id))
+
     return (
         <div className='bg-[#0f1014] '>
         <div className="mx-auto grid max-w-6xl gap-7 rounded-xl bg-[#0f1014] p-4 md:grid-cols-2 my-5 ">
@@ -99,13 +104,9 @@ const DetailsPage = async ({ params }) => {
 
 
                 <div className="mt-5 flex gap-2">
-                    <button className="rounded-md bg-lime-400 px-4 py-2 text-[10px] font-bold text-black hover:bg-lime-300">
-                        ▣ Add to today&apos;s plan
-                    </button>
+                    <Todaysbtn workData ={workData}></Todaysbtn>
 
-                    <button className="rounded-md border border-white/20 px-4 py-2 text-[10px] text-gray-400 hover:border-white/40 hover:text-white">
-                        ♡ Save for later
-                    </button>
+                    <Savebtn workData ={workData}></Savebtn>
                 </div>
             </div>
         </div>
