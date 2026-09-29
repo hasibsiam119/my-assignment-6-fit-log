@@ -58,7 +58,7 @@ const MyPlan = () => {
                 </div>
 
                 <div className="tabs tabs-lift">
-                    <input type="radio" name="my_tabs_3" className="tab" aria-label="Todays Plan" defaultChecked checked={activeTab === "today"}
+                    <input type="radio" name="my_tabs_3" className="tab" aria-label="Todays Plan"  checked={activeTab === "today"}
                         onChange={() => setActiveTab("today")} />
                     <div className="tab-content bg-base-100 border-base-300 p-6">
                         {
