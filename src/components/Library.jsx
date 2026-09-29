@@ -8,7 +8,7 @@ const Library = async() => {
     const workOutData = await getLibraryData()
     return (
         <div className='max-w-7xl mx-auto'>
-            <div className='my-4'>
+            <div className='my-4'id='Library'>
                 <h1 className=' text-2xl font-bold'>THE LIBRARY</h1>
                 <p>Twelve lifts covering every major muscle group.</p>
             </div>

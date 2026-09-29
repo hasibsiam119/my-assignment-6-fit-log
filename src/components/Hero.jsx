@@ -31,13 +31,13 @@ const Hero = () => {
 
           <div className="mt-5 flex items-center gap-3">
 
-            <a
+            <Link
               href="#Library"
               className="inline-flex items-center gap-2 rounded-md bg-lime-400 px-5 py-2.5 text-[10px] font-extrabold uppercase text-black transition hover:bg-lime-300">
               BROWSE WORKOUTS
 
               <span>→</span>
-            </a>
+            </Link>
 
           </div>
         </div>

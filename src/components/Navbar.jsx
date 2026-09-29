@@ -7,7 +7,7 @@ import { planContext } from '@/context/planProvider';
 
 const Navbar = () => {
     
-      const {todaysPlan ,savedPlan, } = useContext(planContext)
+      const {todaysPlan ,savedPlan } = useContext(planContext)
       
     const links = (
         <>
