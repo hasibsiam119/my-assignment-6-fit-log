@@ -3,6 +3,7 @@ import PlanCard from '@/components/planCard';
 import { planContext } from '@/context/planProvider';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 const MyPlan = () => {
@@ -23,8 +24,11 @@ const MyPlan = () => {
                     (workout) => workout.id !== id
                 )
             );
-        }
+        
+         
     };
+    toast.error('Workout removed!');
+}
     return (
         <div className='bg-[#0b0c0f] '>
             <div className='max-w-7xl mx-auto  space-y-10 my-10'>

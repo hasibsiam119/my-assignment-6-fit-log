@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
     const plan = todaysPlan || savedPlan;
@@ -15,6 +16,8 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
             if (prev.includes(id)) return prev;
             return [...prev, id];
         });
+            toast.success('Workout marked as done!');
+
     };
 
     return (
