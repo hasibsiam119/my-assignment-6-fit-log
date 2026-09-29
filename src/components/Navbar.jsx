@@ -4,26 +4,38 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import logo from '@/app/assets/logo.png';
 import { planContext } from '@/context/planProvider';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
-    
+    const pathname = usePathname();
       const {todaysPlan ,savedPlan } = useContext(planContext)
       
     const links = (
         <>
             <li>
-                <Link href="/"
-                    className="rounded-full bg-lime-400 px-4 py-2 text-[11px] font-bold text-black hover:bg-lime-300">
-                    Workouts
-                </Link>
+               <Link
+                href="/"
+                className={
+                    pathname === "/"
+                        ? "rounded-full bg-lime-400 px-4 py-2 text-[11px] font-bold text-black hover:bg-lime-300"
+                        : "px-3 py-2 text-[11px] font-medium text-gray-400 hover:text-white"
+                }
+            >
+                Workouts
+            </Link>
             </li>
 
             <li>
-                <Link
-                    href="/my-plan"
-                    className="px-3 py-2 text-[11px] font-medium text-gray-400 hover:text-white">
-                    My Plan
-                </Link>
+                 <Link
+                href="/my-plan"
+                className={
+                    pathname === "/my-plan"
+                        ? "rounded-full bg-lime-400 px-4 py-2 text-[11px] font-bold text-black hover:bg-lime-300"
+                        : "px-3 py-2 text-[11px] font-medium text-gray-400 hover:text-white"
+                }
+            >
+                My Plan
+            </Link>
             </li>
         </>
     );
