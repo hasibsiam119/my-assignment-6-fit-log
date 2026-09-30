@@ -50,6 +50,7 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
                             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
                                 <span>◷ {workout.duration} min</span>
                                 <span>🔥 {workout.caloriesBurned} kcal</span>
+                                <span>☆ {workout.rating}</span>
                             </div>
                         </div>
 
