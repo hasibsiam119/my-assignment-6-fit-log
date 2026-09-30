@@ -17,18 +17,39 @@ const MyPlan = () => {
                     (workout) => workout.id !== id
                 )
             );
-        
+
         } else {
             setSavedPlan(
                 savedPlan.filter(
                     (workout) => workout.id !== id
                 )
             );
-        
-         
-    };
-    toast.error('Workout removed!');
-}
+
+
+        };
+        toast.error('Workout removed!');
+    }
+
+
+    const [shortBy, setShortBy] = useState('Duration')
+
+    const sortPlans = (plans)=>{
+        const sortedPlans = [...plans]
+        if(shortBy ==='Duration'){
+            sortedPlans.sort((a,b)=>b.duration -a.duration)
+        } else if(shortBy ==='Calories'){
+            sortedPlans.sort((a,b)=>b.caloriesBurned -a.caloriesBurned)
+        } else if(shortBy ==='Rating'){
+             sortedPlans.sort((a,b)=>b.rating -a.rating)
+        }
+        return sortedPlans
+    }
+
+
+
+    const sortedTodaysPlan =sortPlans(todaysPlan)
+    const sortedSavedPlan = sortPlans(savedPlan)
+
     return (
         <div className='bg-[#0b0c0f] '>
             <div className='max-w-7xl mx-auto  space-y-10 my-10'>
@@ -60,9 +81,19 @@ const MyPlan = () => {
                         }</h2>
                     </div>
                 </div>
-
-                <div className="tabs tabs-lift">
-                    <input type="radio" name="my_tabs_3" className="tab" aria-label="Todays Plan"  checked={activeTab === "today"}
+                <div className='flex justify-end '>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">Sort By</legend>
+                        <select  className="select" value={shortBy} onChange={(e)=> setShortBy(e.target.value)}>
+                           
+                            <option value={'Duration'}>Duration</option>
+                            <option value={'Calories'}>Calories</option>
+                            <option value={'Rating'}>Rating</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <div className="tabs tabs-lift ">
+                    <input type="radio" name="my_tabs_3" className="tab" aria-label="Todays Plan" checked={activeTab === "today"}
                         onChange={() => setActiveTab("today")} />
                     <div className="tab-content bg-base-100 border-base-300 p-6">
                         {
@@ -81,7 +112,7 @@ const MyPlan = () => {
                                 </Link>
                             </div>
                                 :
-                                <PlanCard todaysPlan={todaysPlan} type="today" onRemove={handleRemove}  ></PlanCard>
+                                <PlanCard todaysPlan={sortedTodaysPlan} type="today" onRemove={handleRemove}  ></PlanCard>
                         }
                     </div>
 
@@ -106,16 +137,20 @@ const MyPlan = () => {
                                     </Link>
                                 </div>
                                 :
-                                <PlanCard savedPlan={savedPlan} type="saved" onRemove={handleRemove}></PlanCard>
+                                <PlanCard savedPlan={sortedSavedPlan} type="saved" onRemove={handleRemove}></PlanCard>
                         }
+
+
 
 
                     </div>
 
 
                 </div>
+
             </div>
         </div>
+
     );
 };
 
