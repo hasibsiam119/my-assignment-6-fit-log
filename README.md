@@ -4,7 +4,7 @@ FitLog is a modern workout library web application built with Next.js. It allows
 
 ## 🌐 Live Website
 
-[Live Link](YOUR_LIVE_LINK_HERE)
+[Live Link](https://my-assignment-6-fit-log.vercel.app/)
 
 ## 📂 GitHub Repository
 
