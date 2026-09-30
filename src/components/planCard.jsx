@@ -44,7 +44,7 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
                             </h3>
 
                             <p className="mt-1 text-xs text-gray-500">
-                                {workout.category}
+                                {workout.equipment}
                             </p>
 
                             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
