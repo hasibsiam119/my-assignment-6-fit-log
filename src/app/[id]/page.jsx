@@ -11,16 +11,16 @@ const DetailsPage = async ({ params }) => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
     const data = await res.json()
     const workData = data.find(work => work.id === Number(id))
+
     if (!workData) {
         notFound();
     }
+
     return (
-        <div className='bg-[#0f1014] '>
-            <div className="mx-auto grid max-w-6xl gap-7 rounded-xl bg-[#0f1014] p-4 md:grid-cols-2 my-5 ">
+        <div className='bg-[#0f1014]'>
+            <div className="mx-auto grid max-w-6xl gap-7 rounded-xl bg-[#0f1014] p-4 my-5 md:grid-cols-2 md:p-5">
 
-
-                <div className="overflow-hidden rounded-lg">
-
+                <div className="h-[300px] overflow-hidden rounded-lg sm:h-[400px] md:h-full">
                     <Image
                         src={workData.image}
                         alt={workData.name}
@@ -30,8 +30,7 @@ const DetailsPage = async ({ params }) => {
                     />
                 </div>
 
-
-                <div className="py-1">
+                <div className="min-w-0 py-1">
                     <h1 className="text-2xl font-black uppercase text-white">
                         {workData.name}
                     </h1>
@@ -40,7 +39,7 @@ const DetailsPage = async ({ params }) => {
                         {workData.description}
                     </p>
 
-                    <div className="mt-4 flex gap-2">
+                    <div className="mt-4 flex flex-wrap gap-2">
                         {workData.muscleGroups.map((muscle) => (
                             <span
                                 key={muscle}
@@ -51,46 +50,44 @@ const DetailsPage = async ({ params }) => {
                         ))}
                     </div>
 
-
                     <div className="mt-4 overflow-hidden rounded-xl border border-white/5 bg-[#171920]">
-                        <div className="grid grid-cols-2 border-b border-white/5 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 border-b border-white/5 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">EQUIPMENT</span>
-                            <span className="text-right text-gray-300">{workData.equipment}</span>
+                            <span className="min-w-0 break-words text-right text-gray-300">{workData.equipment}</span>
                         </div>
 
-                        <div className="grid grid-cols-2 border-b border-white/5 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 border-b border-white/5 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">DIFFICULTY</span>
-                            <span className="text-right text-gray-300">{workData.difficulty}</span>
+                            <span className="min-w-0 break-words text-right text-gray-300">{workData.difficulty}</span>
                         </div>
 
-                        <div className="grid grid-cols-2 border-b border-white/5 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 border-b border-white/5 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">SETS</span>
-                            <span className="text-right text-gray-300">{workData.sets}</span>
+                            <span className="min-w-0 break-words text-right text-gray-300">{workData.sets}</span>
                         </div>
 
-                        <div className="grid grid-cols-2 border-b border-white/5 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 border-b border-white/5 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">REPS</span>
-                            <span className="text-right text-gray-300">{workData.reps}</span>
+                            <span className="min-w-0 break-words text-right text-gray-300">{workData.reps}</span>
                         </div>
 
-                        <div className="grid grid-cols-2 border-b border-white/5 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 border-b border-white/5 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">DURATION</span>
-                            <span className="text-right text-gray-300">{workData.duration} min</span>
+                            <span className="min-w-0 break-words text-right text-gray-300">{workData.duration} min</span>
                         </div>
 
-                        <div className="grid grid-cols-2 border-b border-white/5 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 border-b border-white/5 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">CALORIES</span>
-                            <span className="text-right text-gray-300">
+                            <span className="min-w-0 break-words text-right text-gray-300">
                                 {workData.caloriesBurned} kcal
                             </span>
                         </div>
 
-                        <div className="grid grid-cols-2 px-4 py-3 text-[10px]">
+                        <div className="grid grid-cols-2 px-3 py-3 text-[10px] sm:px-4">
                             <span className="text-gray-500">RATING</span>
-                            <span className="text-right text-gray-300">{workData.rating}</span>
+                            <span className="min-w-0 break-words text-right text-gray-300">{workData.rating}</span>
                         </div>
                     </div>
-
 
                     <h2 className="mt-5 text-xs font-bold uppercase text-white">
                         Instructions
@@ -105,17 +102,14 @@ const DetailsPage = async ({ params }) => {
                         ))}
                     </ol>
 
-
-                    <div className="mt-5 flex gap-2">
+                    <div className="mt-5 flex flex-wrap gap-2">
                         <Todaysbtn workData={workData}></Todaysbtn>
-
                         <Savebtn workData={workData}></Savebtn>
                     </div>
                 </div>
             </div>
         </div>
     );
-
 };
 
 export default DetailsPage;

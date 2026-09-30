@@ -41,7 +41,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="border-b border-white/10 bg-[#0b0c0f]">
+        <div className="border-b border-white/10 bg-[#0b0c0f] sticky top-0">
             <div className="navbar mx-auto min-h-[64px] max-w-7xl px-4 lg:px-0">
 
               

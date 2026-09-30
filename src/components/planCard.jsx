@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -16,8 +15,7 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
             if (prev.includes(id)) return prev;
             return [...prev, id];
         });
-            toast.success('Workout marked as done!');
-
+        toast.success('Workout marked as done!');
     };
 
     return (
@@ -29,7 +27,7 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
                 return (
                     <div
                         key={workout.id}
-                        className="flex items-center gap-4 rounded-xl border border-white/10 bg-[#13161D] p-3"
+                        className="flex flex-col gap-3 rounded-xl border border-white/10 bg-[#13161D] p-3 sm:flex-row sm:items-center sm:gap-4"
                     >
 
                         <Image
@@ -37,11 +35,10 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
                             alt={workout.name}
                             width={100}
                             height={65}
-                            className="h-[65px] w-[100px] rounded-lg object-cover"
+                            className="h-[180px] w-full rounded-lg object-cover sm:h-[65px] sm:w-[100px]"
                         />
 
-
-                        <div className="flex-1">
+                        <div className="min-w-0 flex-1">
                             <h3 className="text-sm font-bold uppercase text-white">
                                 {workout.name}
                             </h3>
@@ -50,43 +47,44 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
                                 {workout.category}
                             </p>
 
-                            <div className="mt-2 flex gap-4 text-xs text-gray-400">
+                            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
                                 <span>◷ {workout.duration} min</span>
                                 <span>🔥 {workout.caloriesBurned} kcal</span>
                             </div>
                         </div>
 
+                        <div className="flex flex-wrap gap-2 sm:flex-nowrap">
+                            <Link
+                                href={`/${workout.id}`}
+                                className="rounded-full border border-white/20 px-4 py-2 text-xs text-gray-300 hover:bg-white/10"
+                            >
+                                View Details
+                            </Link>
 
-                        <Link
-                            href={`/${workout.id}`}
-                            className="rounded-full border border-white/20 px-4 py-2 text-xs text-gray-300 hover:bg-white/10"
-                        >
-                            View Details
-                        </Link>
-
-
-                        <button
-                            disabled={isCompleted}
-                            onClick={() => handleComplete(workout.id)}
-                            className={`rounded-full px-4 py-2 text-xs font-semibold ${isCompleted
-                                    ? 'cursor-not-allowed bg-gray-700 text-gray-400'
-                                    : 'bg-lime-400 text-black hover:bg-lime-300'
+                            <button
+                                disabled={isCompleted}
+                                onClick={() => handleComplete(workout.id)}
+                                className={`rounded-full px-4 py-2 text-xs font-semibold ${
+                                    isCompleted
+                                        ? 'cursor-not-allowed bg-gray-700 text-gray-400'
+                                        : 'bg-lime-400 text-black hover:bg-lime-300'
                                 }`}
-                        >
-                            {isCompleted
-                                ? '✓ Completed'
-                                : '✓ Mark as Done'}
-                        </button>
+                            >
+                                {isCompleted
+                                    ? '✓ Completed'
+                                    : '✓ Mark as Done'}
+                            </button>
 
+                            <button
+                                className="px-2 text-xl text-gray-500 hover:text-red-400"
+                                onClick={() =>
+                                    onRemove(workout.id, type)
+                                }
+                            >
+                                ×
+                            </button>
+                        </div>
 
-                        <button
-                            className="text-xl text-gray-500 hover:text-red-400"
-                            onClick={() =>
-                                onRemove(workout.id, type)
-                            }
-                        >
-                            ×
-                        </button>
                     </div>
                 );
             })}
@@ -95,4 +93,3 @@ const PlanCard = ({ todaysPlan, savedPlan, onRemove, type }) => {
 };
 
 export default PlanCard;
-
